@@ -1,314 +1,237 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Analysis Results - InterviewGenie</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>InterviewGenie - Analysis Results</title>
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-        
+
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #0f1419 0%, #1a2332 100%);
-            min-height: 100vh;
-            color: #ffffff;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: white;
+            color: #333;
             line-height: 1.6;
-        }
-        
-        .container {
-            max-width: 1000px;
-            margin: 0 auto;
             padding: 40px 20px;
         }
-        
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+        }
+
         .header {
             text-align: center;
-            margin-bottom: 50px;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #1e40af;
         }
-        
+
         .logo {
-            font-size: 2.5rem;
+            font-size: 2rem;
             font-weight: 700;
-            background: linear-gradient(135deg, #3b82f6, #1d4ed8);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 15px;
+            color: #1e40af;
+            margin-bottom: 10px;
         }
-        
+
         .page-title {
-            font-size: 1.8rem;
-            color: #ffffff;
-            margin-bottom: 10px;
+            font-size: 1.5rem;
+            color: #333;
+            margin-bottom: 5px;
         }
-        
+
         .subtitle {
-            color: #94a3b8;
-            font-size: 1.1rem;
+            font-size: 1rem;
+            color: #666;
         }
-        
-        .status-banner {
-            background: rgba(59, 130, 246, 0.1);
-            border: 1px solid rgba(59, 130, 246, 0.3);
-            border-radius: 15px;
-            padding: 20px;
-            margin: 30px 0;
+
+        .status-info {
             text-align: center;
-            backdrop-filter: blur(10px);
+            margin-bottom: 30px;
+            padding: 10px;
+            background: #f8f9fa;
+            border-radius: 5px;
+            color: #666;
+            font-size: 0.9rem;
         }
-        
-        .status-banner h3 {
-            color: #3b82f6;
-            margin-bottom: 10px;
-            font-size: 1.2rem;
+
+        .section {
+            margin-bottom: 30px;
+            page-break-inside: avoid;
         }
-        
-        .status-banner p {
-            color: #94a3b8;
-            margin-bottom: 0;
-        }
-        
-        .success-banner {
-            background: rgba(34, 197, 94, 0.1);
-            border: 1px solid rgba(34, 197, 94, 0.3);
-        }
-        
-        .success-banner h3 {
-            color: #22c55e;
-        }
-        
-        .success-banner p {
-            color: #86efac;
-        }
-        
-        .content-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 30px;
-            margin: 40px 0;
-        }
-        
-        .content-section {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 15px;
-            padding: 30px;
-            backdrop-filter: blur(10px);
-            transition: all 0.3s ease;
-        }
-        
-        .content-section:hover {
-            transform: translateY(-2px);
-            background: rgba(255, 255, 255, 0.08);
-            border-color: rgba(59, 130, 246, 0.2);
-        }
-        
-        .section-header {
-            display: flex;
-            align-items: center;
-            margin-bottom: 25px;
-            padding-bottom: 15px;
-            border-bottom: 2px solid rgba(59, 130, 246, 0.3);
-        }
-        
-        .section-icon {
-            font-size: 1.8rem;
-            margin-right: 15px;
-            color: #3b82f6;
-        }
-        
+
         .section-title {
-            font-size: 1.4rem;
+            font-size: 1.2rem;
             font-weight: 600;
-            color: #ffffff;
+            color: #1e40af;
+            margin-bottom: 15px;
+            padding-bottom: 5px;
+            border-bottom: 1px solid #e9ecef;
         }
-        
+
         .summary-text {
-            font-size: 1.1rem;
-            color: #e2e8f0;
+            font-size: 1rem;
+            color: #333;
             line-height: 1.7;
-            background: rgba(59, 130, 246, 0.1);
-            padding: 20px;
-            border-radius: 10px;
-            border-left: 4px solid #3b82f6;
+            text-align: justify;
         }
-        
+
         .key-points-list {
             list-style: none;
         }
-        
+
         .key-points-list li {
-            background: rgba(59, 130, 246, 0.1);
-            margin: 12px 0;
-            padding: 15px 20px;
-            border-radius: 10px;
-            border-left: 3px solid #3b82f6;
-            color: #e2e8f0;
-            transition: all 0.3s ease;
-        }
-        
-        .key-points-list li:hover {
-            background: rgba(59, 130, 246, 0.15);
-            transform: translateX(5px);
-        }
-        
-        .structured-content {
-            margin-top: 20px;
-        }
-        
-        .content-subsection {
-            margin: 20px 0;
-        }
-        
-        .subsection-title {
-            font-size: 1.1rem;
-            font-weight: 600;
-            color: #3b82f6;
-            margin-bottom: 15px;
-            padding-bottom: 8px;
-            border-bottom: 1px solid rgba(59, 130, 246, 0.2);
-        }
-        
-        .subsection-content {
-            list-style: none;
+            margin-bottom: 10px;
             padding-left: 20px;
-        }
-        
-        .subsection-content li {
-            color: #cbd5e1;
-            margin: 8px 0;
-            padding: 8px 0;
             position: relative;
+            color: #333;
         }
-        
-        .subsection-content li::before {
+
+        .key-points-list li:before {
             content: "•";
-            color: #3b82f6;
+            color: #1e40af;
             font-weight: bold;
             position: absolute;
-            left: -20px;
+            left: 0;
         }
-        
-        .original-text-preview {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 10px;
-            padding: 20px;
-            margin: 20px 0;
+
+        .content-item {
+            margin-bottom: 20px;
         }
-        
-        .original-text-preview h3 {
-            color: #94a3b8;
-            margin-bottom: 15px;
+
+        .content-header {
+            font-weight: 600;
+            color: #1e40af;
+            margin-bottom: 10px;
             font-size: 1rem;
         }
-        
-        .original-text-preview p {
-            color: #64748b;
+
+        .content-list {
+            list-style: none;
+            margin-left: 20px;
+        }
+
+        .content-list li {
+            color: #333;
+            margin-bottom: 8px;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .content-list li:before {
+            content: "→";
+            color: #1e40af;
+            position: absolute;
+            left: 0;
+        }
+
+        .original-text {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 5px;
+            color: #666;
             font-size: 0.9rem;
-            line-height: 1.5;
+            line-height: 1.6;
+            border-left: 3px solid #1e40af;
         }
-        
-        .action-buttons {
-            display: flex;
-            gap: 20px;
-            justify-content: center;
-            margin: 40px 0;
-            flex-wrap: wrap;
-        }
-        
-        .btn {
-            padding: 15px 30px;
-            border: none;
-            border-radius: 50px;
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            display: inline-block;
-        }
-        
-        .btn-primary {
-            background: linear-gradient(135deg, #3b82f6, #1d4ed8);
-            color: white;
-            box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
-        }
-        
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(59, 130, 246, 0.4);
-        }
-        
-        .btn-secondary {
-            background: rgba(255, 255, 255, 0.1);
-            color: #ffffff;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
-        
-        .btn-secondary:hover {
-            background: rgba(255, 255, 255, 0.15);
-            transform: translateY(-2px);
-        }
-        
+
         .download-section {
-            background: rgba(59, 130, 246, 0.1);
-            border: 1px solid rgba(59, 130, 246, 0.3);
-            border-radius: 15px;
-            padding: 30px;
-            margin: 40px 0;
             text-align: center;
-            backdrop-filter: blur(10px);
+            margin: 40px 0;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 5px;
         }
-        
-        .download-section h3 {
-            color: #3b82f6;
-            margin-bottom: 15px;
-            font-size: 1.3rem;
+
+        .download-title {
+            font-size: 1.1rem;
+            color: #1e40af;
+            margin-bottom: 10px;
+            font-weight: 600;
         }
-        
-        .download-section p {
-            color: #94a3b8;
-            margin-bottom: 25px;
-        }
-        
+
         .download-btn {
-            background: linear-gradient(135deg, #22c55e, #16a34a);
+            background: #1e40af;
             color: white;
             border: none;
-            padding: 15px 40px;
-            border-radius: 50px;
-            font-size: 1.1rem;
-            font-weight: 600;
+            padding: 12px 25px;
+            border-radius: 5px;
+            font-size: 1rem;
             cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(34, 197, 94, 0.3);
+            margin: 10px;
         }
-        
+
         .download-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(34, 197, 94, 0.4);
+            background: #1e3a8a;
         }
-        
+
+        .action-buttons {
+            text-align: center;
+            margin: 30px 0;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            margin: 0 10px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: 500;
+        }
+
+        .btn-primary {
+            background: #1e40af;
+            color: white;
+        }
+
+        .btn-secondary {
+            background: #6c757d;
+            color: white;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #e9ecef;
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        @media print {
+            body {
+                padding: 0;
+            }
+            
+            .download-section,
+            .action-buttons,
+            .footer {
+                display: none;
+            }
+        }
+
         @media (max-width: 768px) {
-            .container {
+            body {
                 padding: 20px 15px;
             }
             
-            .content-section {
-                padding: 20px;
+            .logo {
+                font-size: 1.5rem;
             }
             
-            .action-buttons {
-                flex-direction: column;
-                align-items: center;
+            .page-title {
+                font-size: 1.3rem;
             }
             
-            .btn {
-                width: 100%;
-                max-width: 300px;
+            .action-buttons .btn {
+                display: block;
+                margin: 10px auto;
+                max-width: 200px;
             }
         }
     </style>
@@ -316,117 +239,108 @@
 <body>
     <div class="container">
         <div class="header">
-            <div class="logo">🤖 InterviewGenie</div>
-            <div class="page-title">Document Analysis Complete</div>
-            <div class="subtitle">Your document has been processed and analyzed</div>
+            <div class="logo">InterviewGenie</div>
+            <div class="page-title">Document Analysis Report</div>
+            <div class="subtitle">AI-Powered Content Intelligence</div>
         </div>
-        
-        {% if processing_method == "local_fallback" %}
-        <div class="status-banner">
-            <h3>ℹ️ Local Processing Mode</h3>
-            <p>AI processing is currently unavailable due to API quota limits. This content was processed using enhanced local analysis methods.</p>
-            {% if analysis_quality == "enhanced_local" %}
-            <p><strong>✅ Enhanced Analysis:</strong> Using advanced NLP techniques for better content understanding.</p>
+
+        <div class="status-info">
+            {% if processing_method == 'ai' %}
+                AI Analysis Complete using OpenAI GPT
+            {% else %}
+                Local Analysis Complete using Advanced NLP
             {% endif %}
         </div>
-        {% elif processing_method == "ai_processing" %}
-        <div class="status-banner success-banner">
-            <h3>✅ AI Processing Complete</h3>
-            <p>This content was analyzed and structured using OpenAI's GPT model.</p>
+
+        {% if summary %}
+        <div class="section">
+            <div class="section-title">Executive Summary</div>
+            <div class="summary-text">
+                {{ summary }}
+            </div>
         </div>
         {% endif %}
-        
-        <div class="content-grid">
-            <div class="content-section">
-                <div class="section-header">
-                    <div class="section-icon">📋</div>
-                    <div class="section-title">Executive Summary</div>
-                </div>
-                <div class="summary-text">{{ summary }}</div>
-            </div>
-            
-            <div class="content-section">
-                <div class="section-header">
-                    <div class="section-icon">🎯</div>
-                    <div class="section-title">Key Points</div>
-                </div>
-                <ul class="key-points-list">
-                    {% for point in key_points %}
-                    <li>{{ point }}</li>
+
+        {% if key_points %}
+        <div class="section">
+            <div class="section-title">Key Points</div>
+            <ul class="key-points-list">
+                {% for point in key_points %}
+                <li>{{ point }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% endif %}
+
+        {% if structured_content %}
+        <div class="section">
+            <div class="section-title">Structured Content</div>
+            {% for section_name, content_list in structured_content.items %}
+            <div class="content-item">
+                <div class="content-header">{{ section_name }}</div>
+                {% if content_list %}
+                <ul class="content-list">
+                    {% for item in content_list %}
+                    <li>{{ item }}</li>
                     {% endfor %}
                 </ul>
+                {% endif %}
             </div>
-            
-            <div class="content-section">
-                <div class="section-header">
-                    <div class="section-icon">📚</div>
-                    <div class="section-title">Structured Content</div>
-                </div>
-                <div class="structured-content">
-                    {% for section_name, content_list in structured_content.items %}
-                    <div class="content-subsection">
-                        <div class="subsection-title">{{ section_name|title }}</div>
-                        <ul class="subsection-content">
-                            {% if content_list %}
-                                {% for item in content_list %}
-                                <li>{{ item }}</li>
-                                {% endfor %}
-                            {% else %}
-                                <li>{{ content_list }}</li>
-                            {% endif %}
-                        </ul>
-                    </div>
-                    {% endfor %}
-                </div>
-            </div>
-            
-            <div class="content-section">
-                <div class="section-header">
-                    <div class="section-icon">📄</div>
-                    <div class="section-title">Original Text Preview</div>
-                </div>
-                <div class="original-text-preview">
-                    <h3>Source Content</h3>
-                    <p>{{ original_text }}</p>
-                </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+
+        {% if original_text %}
+        <div class="section">
+            <div class="section-title">Original Text Preview</div>
+            <div class="original-text">
+                {{ original_text }}
             </div>
         </div>
-        
+        {% endif %}
+
         <div class="download-section">
-            <h3>💾 Download Analysis Report</h3>
-            <p>Get a professional PDF version of this analysis for sharing or archiving.</p>
-            
-            <form method="post" action="{% url 'download_pdf' %}" class="download-form">
+            <div class="download-title">Download PDF Report</div>
+            <form method="post" action="{% url 'download_pdf' %}" style="display: inline;">
                 {% csrf_token %}
-                <input type="hidden" name="summary" value="{{ summary }}">
-                <input type="hidden" name="processing_method" value="{{ processing_method }}">
-                <input type="hidden" name="original_filename" value="{{ original_filename }}">
+                <input type="hidden" name="summary" value="{{ summary|default:'' }}">
+                <input type="hidden" name="processing_method" value="{{ processing_method|default:'local_fallback' }}">
+                <input type="hidden" name="original_filename" value="{{ original_filename|default:'document' }}">
                 
-                {% for point in key_points %}
-                <input type="hidden" name="key_points" value="{{ point }}">
-                {% endfor %}
+                {% if key_points %}
+                    {% for point in key_points %}
+                    <input type="hidden" name="key_points" value="{{ point }}">
+                    {% endfor %}
+                {% endif %}
                 
-                <!-- Pass structured content sections individually -->
-                {% for section_name, content_list in structured_content.items %}
-                    {% if content_list %}
-                        {% for item in content_list %}
-                        <input type="hidden" name="structured_content_{{ section_name }}" value="{{ item }}">
-                        {% endfor %}
-                    {% else %}
-                        <input type="hidden" name="structured_content_{{ section_name }}" value="{{ content_list }}">
-                    {% endif %}
-                {% endfor %}
+                {% if structured_content %}
+                    {% for section_name, content_list in structured_content.items %}
+                        {% if content_list %}
+                            {% for item in content_list %}
+                            <input type="hidden" name="structured_content_{{ section_name }}" value="{{ item }}">
+                            {% endfor %}
+                        {% endif %}
+                    {% endfor %}
+                {% endif %}
                 
                 <button type="submit" class="download-btn">
-                    📄 Download PDF Report
+                    Download PDF
                 </button>
             </form>
         </div>
-        
+
         <div class="action-buttons">
-            <a href="{% url 'upload_document' %}" class="btn btn-primary">📤 Upload Another Document</a>
-            <a href="{% url 'upload_document' %}" class="btn btn-secondary">🏠 Back to Home</a>
+            <a href="{% url 'upload_document' %}" class="btn btn-primary">
+                Upload Another Document
+            </a>
+            <a href="{% url 'upload_document' %}" class="btn btn-secondary">
+                Back to Upload
+            </a>
         </div>
+    </div>
+
+    <div class="footer">
+        <p>Generated by InterviewGenie • AI-Powered Document Analysis</p>
     </div>
 </body>
 </html>

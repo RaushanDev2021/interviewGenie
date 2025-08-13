@@ -1,88 +1,115 @@
-# InterviewGenie - AI-Powered Document Processor
+# 🤖 InterviewGenie - AI Document Processor
 
-A Django application that extracts text from PDF and Word documents and processes it through AI to provide structured, summarized content.
+A Django app that extracts text from PDF/Word files and processes it with AI to create structured, summarized content.
 
-## Features
+## ✨ Features
 
-- **Document Upload**: Support for PDF and Word (.docx) files
-- **Text Extraction**: Uses pdfminer.six and python-docx for reliable text extraction
-- **AI Processing**: OpenAI GPT integration for content analysis and structuring
-- **Structured Output**: 
-  - Key points identification
-  - Organized content sections
-  - Executive summary
-  - Original text preview
+- **Document Upload**: PDF and Word (.docx) support
+- **AI Processing**: OpenAI GPT integration for smart analysis
+- **Local Fallback**: Advanced NLP processing when AI unavailable
+- **Structured Output**: Key points, organized sections, executive summary
+- **PDF Reports**: Downloadable analysis documents
+- **Modern UI**: Beautiful dark theme with drag & drop
 
-## Setup
+## 🚀 Quick Start
 
 ### 1. Install Dependencies
-
 ```bash
 pip install -r requirements.txt
 ```
 
-### 2. Configure OpenAI API
-
-Edit `core/settings.py` and set your OpenAI API key:
-
+### 2. Configure OpenAI (Optional)
+Edit `core/settings.py`:
 ```python
-OPENAI_API_KEY = "your-actual-openai-api-key"
+OPENAI_API_KEY = "your-api-key-here"
+OPENAI_MODEL = "gpt-3.5-turbo"
 ```
 
-Or set environment variables:
-
-```bash
-export OPENAI_API_KEY="your-actual-openai-api-key"
-```
-
-### 3. Run Django
-
+### 3. Run the App
 ```bash
 python manage.py runserver
 ```
 
-Visit `http://localhost:8000` to use the application.
+Visit `http://localhost:8000` to use the app.
 
-## Usage
+## 📖 How to Use
 
-1. Upload a PDF or Word document
-2. The system extracts the text
-3. AI processes the content to identify key points and structure
-4. View the organized, summarized results
+1. **Upload**: Drag & drop or click to select a PDF/Word file
+2. **Process**: AI analyzes content and creates structured output
+3. **View**: See summary, key points, and organized sections
+4. **Download**: Get a professional PDF report
 
-## Configuration Options
+## 🔧 Configuration
 
-In `core/settings.py`:
+### OpenAI Settings
+- `OPENAI_API_KEY`: Your API key
+- `OPENAI_MODEL`: Choose "gpt-4" or "gpt-3.5-turbo"
+- `OPENAI_MAX_TOKENS`: Response length (default: 2000)
 
-- `OPENAI_MODEL`: Choose between "gpt-4" or "gpt-3.5-turbo"
-- `OPENAI_MAX_TOKENS`: Control response length (default: 2000)
-- `OPENAI_API_KEY`: Your OpenAI API key
+### Processing Modes
+- **AI-Enhanced**: Best results with OpenAI
+- **Local Fallback**: Smart NLP when AI unavailable
+- **Automatic**: Seamless switching between modes
 
-## API Usage
+## 🏗️ Architecture
 
-The AI processing function:
-- Limits input text to 3000 characters to manage token usage
-- Requests structured JSON responses
-- Includes fallback error handling
-- Supports both newer and older OpenAI API formats
+- **Backend**: Django framework
+- **Text Extraction**: pdfminer.six + python-docx
+- **AI Processing**: OpenAI GPT API
+- **Local Analysis**: NLTK for advanced NLP
+- **PDF Generation**: ReportLab
+- **Frontend**: Modern CSS with JavaScript
 
-## Cost Optimization
+## 📱 Features
 
-- Use `gpt-3.5-turbo` instead of `gpt-4` for lower costs
-- Adjust `OPENAI_MAX_TOKENS` based on your needs
-- Consider implementing text chunking for very long documents
+### Smart Analysis
+- Key point extraction
+- Content structuring
+- Executive summaries
+- Document classification
 
-## Error Handling
+### User Experience
+- Drag & drop uploads
+- Responsive design
+- Dark theme
+- Interactive elements
 
-The system gracefully handles:
-- API failures
-- JSON parsing errors
-- File format issues
-- Network timeouts
+## 🚨 Common Issues
 
-## Security Notes
+- **API Quota**: App automatically uses local processing
+- **File Errors**: Check format (.pdf, .docx) and size
+- **Slow Processing**: Large documents take longer
 
-- Never commit API keys to version control
-- Use environment variables in production
-- Consider rate limiting for production use
-- Validate file uploads and sizes 
+## 🔒 Security
+
+- CSRF protection
+- File validation
+- Secure uploads
+- Environment variables for API keys
+
+## 📄 Dependencies
+
+```
+Django>=5.2.5
+pdfminer.six
+python-docx
+openai>=1.0.0
+nltk>=3.8
+reportlab>=4.0.0
+lxml>=6.0.0
+```
+
+## 🚀 Production
+
+```bash
+# Use production server
+gunicorn core.wsgi:application
+
+# Set environment variables
+export DEBUG=False
+export OPENAI_API_KEY="your-key"
+```
+
+---
+
+**InterviewGenie** - Transform documents into insights with AI! 🚀 
