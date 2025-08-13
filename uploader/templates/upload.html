@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>InterviewGenie - Document Analysis</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0f1419 0%, #1a2332 100%);
+            min-height: 100vh;
+            color: #ffffff;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            text-align: center;
+        }
+        
+        .header {
+            margin-bottom: 60px;
+        }
+        
+        .logo {
+            font-size: 3.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 20px;
+        }
+        
+        .tagline {
+            font-size: 1.3rem;
+            color: #94a3b8;
+            font-weight: 300;
+            margin-bottom: 10px;
+        }
+        
+        .description {
+            font-size: 1.1rem;
+            color: #64748b;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+        
+        .upload-area {
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px dashed #3b82f6;
+            border-radius: 20px;
+            padding: 60px 40px;
+            margin: 40px 0;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+        
+        .upload-area:hover {
+            border-color: #60a5fa;
+            background: rgba(255, 255, 255, 0.08);
+            transform: translateY(-2px);
+        }
+        
+        .upload-area.dragover {
+            border-color: #60a5fa;
+            background: rgba(59, 130, 246, 0.1);
+        }
+        
+        .upload-icon {
+            font-size: 4rem;
+            color: #3b82f6;
+            margin-bottom: 20px;
+        }
+        
+        .upload-text {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #ffffff;
+        }
+        
+        .upload-subtext {
+            font-size: 1rem;
+            color: #94a3b8;
+            margin-bottom: 30px;
+        }
+        
+        .file-input {
+            display: none;
+        }
+        
+        .upload-btn {
+            background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+        }
+        
+        .upload-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(59, 130, 246, 0.4);
+        }
+        
+        .upload-btn:active {
+            transform: translateY(0);
+        }
+        
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 60px;
+        }
+        
+        .feature {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px 20px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .feature:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(59, 130, 246, 0.3);
+        }
+        
+        .feature-icon {
+            font-size: 2.5rem;
+            color: #3b82f6;
+            margin-bottom: 20px;
+        }
+        
+        .feature-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #ffffff;
+        }
+        
+        .feature-desc {
+            font-size: 0.95rem;
+            color: #94a3b8;
+            line-height: 1.5;
+        }
+        
+        .supported-formats {
+            margin-top: 40px;
+            padding: 20px;
+            background: rgba(59, 130, 246, 0.1);
+            border-radius: 15px;
+            border: 1px solid rgba(59, 130, 246, 0.2);
+        }
+        
+        .supported-formats h3 {
+            color: #3b82f6;
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+        
+        .format-tags {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .format-tag {
+            background: rgba(59, 130, 246, 0.2);
+            color: #3b82f6;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            border: 1px solid rgba(59, 130, 246, 0.3);
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px 15px;
+            }
+            
+            .logo {
+                font-size: 2.5rem;
+            }
+            
+            .upload-area {
+                padding: 40px 20px;
+            }
+            
+            .features {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="logo">🤖 InterviewGenie</div>
+            <div class="tagline">AI-Powered Document Intelligence</div>
+            <div class="description">
+                Transform your PDFs and Word documents into structured, analyzed content with advanced AI processing and intelligent text extraction.
+            </div>
+        </div>
+        
+        <form method="post" enctype="multipart/form-data" class="upload-form">
+            {% csrf_token %}
+            <div class="upload-area" id="uploadArea">
+                <div class="upload-icon">📄</div>
+                <div class="upload-text">Drop your document here</div>
+                <div class="upload-subtext">or click to browse files</div>
+                <input type="file" name="document" accept=".pdf,.docx" class="file-input" id="fileInput" required>
+                <button type="button" class="upload-btn" onclick="document.getElementById('fileInput').click()">
+                    Choose File
+                </button>
+            </div>
+        </form>
+        
+        <div class="supported-formats">
+            <h3>📋 Supported Formats</h3>
+            <div class="format-tags">
+                <span class="format-tag">PDF Documents</span>
+                <span class="format-tag">Word (.docx)</span>
+                <span class="format-tag">Text Extraction</span>
+                <span class="format-tag">AI Analysis</span>
+            </div>
+        </div>
+        
+        <div class="features">
+            <div class="feature">
+                <div class="feature-icon">🧠</div>
+                <div class="feature-title">AI Processing</div>
+                <div class="feature-desc">Advanced GPT-powered text analysis and content structuring for deeper insights.</div>
+            </div>
+            
+            <div class="feature">
+                <div class="feature-icon">⚡</div>
+                <div class="feature-title">Smart Fallback</div>
+                <div class="feature-desc">Professional NLP analysis when AI isn't available, ensuring consistent quality.</div>
+            </div>
+            
+            <div class="feature">
+                <div class="feature-icon">📊</div>
+                <div class="feature-title">Structured Output</div>
+                <div class="feature-desc">Organized content with key points, summaries, and logical sections.</div>
+            </div>
+            
+            <div class="feature">
+                <div class="feature-icon">💾</div>
+                <div class="feature-title">PDF Reports</div>
+                <div class="feature-desc">Download professional analysis reports for sharing and archiving.</div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        const uploadArea = document.getElementById('uploadArea');
+        const fileInput = document.getElementById('fileInput');
+        
+        // Drag and drop functionality
+        uploadArea.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            uploadArea.classList.add('dragover');
+        });
+        
+        uploadArea.addEventListener('dragleave', () => {
+            uploadArea.classList.remove('dragover');
+        });
+        
+        uploadArea.addEventListener('drop', (e) => {
+            e.preventDefault();
+            uploadArea.classList.remove('dragover');
+            const files = e.dataTransfer.files;
+            if (files.length > 0) {
+                fileInput.files = files;
+                submitForm();
+            }
+        });
+        
+        // Auto-submit when file is selected
+        fileInput.addEventListener('change', submitForm);
+        
+        function submitForm() {
+            if (fileInput.files.length > 0) {
+                document.querySelector('.upload-form').submit();
+            }
+        }
+        
+        // Click anywhere on upload area to select file
+        uploadArea.addEventListener('click', () => {
+            fileInput.click();
+        });
+    </script>
+</body>
+</html>
